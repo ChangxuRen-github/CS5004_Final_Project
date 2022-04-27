@@ -8,8 +8,9 @@ import util.Vector2D;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Objects;
+import java.io.InputStream;
 
 public class Tank extends Entity{
     private KeyHandler keyHandler;
@@ -19,8 +20,8 @@ public class Tank extends Entity{
     private static final int MIN_GUN_ANGLE = 10;
     private static final int MAX_GUN_POWER = 80;
     private static final int MIN_GUN_POWER = 10;
-    public int gunAngle = MIN_GUN_ANGLE;
-    public int gunPower = MIN_GUN_POWER;
+    private int gunAngle = MIN_GUN_ANGLE;
+    private int gunPower = MIN_GUN_POWER;
 
     private BufferedImage tankOne, tankTwo;
 
@@ -39,8 +40,8 @@ public class Tank extends Entity{
     @Override
     public void reset() {
         this.direction = Direction.RIGHT;
-        this.x = 100;
-        this.y = 1013;
+        this.x = 3 * gamePanel.tileSize;
+        this.y = 21 * gamePanel.tileSize;
     }
 
     /**
@@ -62,9 +63,14 @@ public class Tank extends Entity{
     private void getImage() {
 
         try {
+            InputStream tank1Stream = new FileInputStream("./2DGameDemo/res/tank/tankOne.png");
+            InputStream tank2Stream = new FileInputStream("./2DGameDemo/res/tank/tankTwo.png");
+            tankOne = ImageIO.read(tank1Stream);
+            tankTwo = ImageIO.read(tank2Stream);
 
-            tankOne = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tank/tankOne.png")));
-            tankTwo = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/tank/tankTwo.png")));
+            /*tankOne = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("2DGameDemo/res/tank/tankOne.png")));
+            tankTwo = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("2DGameDemo/res/tank/tankTwo.png")));*/
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -74,7 +80,6 @@ public class Tank extends Entity{
 
     @Override
     public void update() {
-
         if (keyHandler.leftPressed
                 || keyHandler.rightPressed) {
 
@@ -137,9 +142,26 @@ public class Tank extends Entity{
     public void fire() {
         if (missile.isAlive()) return;
 
+        //TODO: This Algo is not working properly
         missile.setSpeed(new Vector2D((int) (gunPower * 0.3), Math.toRadians(gunAngle)));
         missile.setX(this.x);
         missile.setY(this.y);
         missile.setAlive(true);
+    }
+
+    public int getGunAngle() {
+        return gunAngle;
+    }
+
+    public void setGunAngle(int gunAngle) {
+        this.gunAngle = gunAngle;
+    }
+
+    public int getGunPower() {
+        return gunPower;
+    }
+
+    public void setGunPower(int gunPower) {
+        this.gunPower = gunPower;
     }
 }

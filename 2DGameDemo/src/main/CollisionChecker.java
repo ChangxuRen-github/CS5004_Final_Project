@@ -24,7 +24,9 @@ public class CollisionChecker {
         int entityBottomRow = entityBottomY / gamePanel.tileSize;
 
         switch (entity.getDirection()) {
+            //in java new vision , switch statement has changes. do not need "break" sign  and :
             case UP -> {
+
                 entityTopRow = (entityTopY - entity.getSpeed().getYComponent()) / gamePanel.tileSize;
                 if (gamePanel.tileManager.isSolidTile(entityTopRow, entityLeftCol)
                         || gamePanel.tileManager.isSolidTile(entityTopRow, entityRightCol)) {

@@ -7,6 +7,7 @@ import util.Vector2D;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -42,8 +43,8 @@ public class Missile extends Entity{
     public void getImage() {
 
         try {
-
-            missileImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/missile/missile.png")));
+            missileImage = ImageIO.read(Objects.requireNonNull(new FileInputStream("./2DGameDemo/res/missile/missile.png")));
+            //missileImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/missile/missile.png")));
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -90,8 +91,6 @@ public class Missile extends Entity{
         y += speed.getYComponent();
 
         direction = speed.getYComponent() >= 0 ? Direction.UP : Direction.DOWN;
-
-
 
         // update the speed of the missile
         if (updateCounter >= 15) {

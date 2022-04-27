@@ -1,10 +1,13 @@
 package tile;
 
 import main.GamePanel;
+import util.Constant;
+import util.ImageResourceParser;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Objects;
@@ -19,7 +22,7 @@ public class TileManager {
     private final GamePanel gamePanel;
     private Tile[] tiles;
     private int[][] map;
-    private final String[] maps = {"/maps/map01.txt"};
+    private final String[] maps = { Constant.RES_MAP1_CONFIG};
     private int currentMap = 0;
 
     public TileManager(GamePanel gamePanel) {
@@ -37,23 +40,23 @@ public class TileManager {
     public void getTileImages() {
         try {
             tiles[SKY] = new Tile();
-            tiles[SKY].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/sky/sky.png")));
+            tiles[SKY].image = ImageResourceParser.getBufferedImage(Constant.RES_SKY_PNG);
 
             tiles[BRICK] = new Tile();
-            tiles[BRICK].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/land/brick.png")));
+            tiles[BRICK].image = ImageResourceParser.getBufferedImage(Constant.RES_BRICK_PNG);
             // set Brick  to be solid
             tiles[BRICK].isSolid = true;
 
             tiles[GRASS] = new Tile();
-            tiles[GRASS].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/land/grass.png")));
+            tiles[GRASS].image = ImageResourceParser.getBufferedImage(Constant.RES_GRASS_PNG);
             // set grass tile to be solid
             tiles[GRASS].isSolid = true;
 
             tiles[CLOUD] = new Tile();
-            tiles[CLOUD].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/sky/bigCloud.png")));
+            tiles[CLOUD].image = ImageResourceParser.getBufferedImage(Constant.RES_CLOUD_PNG);
 
             tiles[SKY_WITH_STARS] = new Tile();
-            tiles[SKY_WITH_STARS].image = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/sky/skyWithStars.png")));
+            tiles[SKY_WITH_STARS].image = ImageResourceParser.getBufferedImage(Constant.RES_SKY_WITH_STAR_PNG);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -65,7 +68,7 @@ public class TileManager {
      */
     private void loadMap(String filePath) {
         try {
-            InputStream inputStream = getClass().getResourceAsStream(filePath);
+            InputStream inputStream = new FileInputStream(filePath);
             assert inputStream != null;
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 

@@ -10,7 +10,7 @@ import java.awt.*;
 public class GamePanel extends JPanel implements Runnable{
 
     // Screen settings the size of sprite is 16 * 16 pixels
-    public final int originalTileSize = 16;
+    public final int originalTileSize = 10;
     // Scaling up the sprite to 48 * 48
     public final int scale = 3;
     // Scaling up the size of sprite
@@ -68,6 +68,9 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
 
+    public Tank getTank() {
+        return this.tank;
+    }
     @Override
     public void run() {
 
@@ -97,8 +100,8 @@ public class GamePanel extends JPanel implements Runnable{
             }
 
             if (timer >= 1_000_000_000) {
-                System.out.println("Gun angle: " + tank.gunAngle);
-                System.out.println("Gun power: " + tank.gunPower);
+                System.out.println("Gun angle: " + tank.getGunAngle());
+                System.out.println("Gun power: " + tank.getGunPower());
                 System.out.println("FPS: " + drawCount);
                 drawCount = 0;
                 timer = 0;
