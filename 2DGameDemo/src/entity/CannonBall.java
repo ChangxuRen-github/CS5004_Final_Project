@@ -20,7 +20,7 @@ public class CannonBall extends Entity{
 
 
 
-    private BufferedImage missileImage;
+    private BufferedImage connonballImage;
 
     public CannonBall(GamePanel gamePanel) {
         super(gamePanel);
@@ -43,7 +43,7 @@ public class CannonBall extends Entity{
 
     public void getImage() {
         try {
-            missileImage = ImageResourceParser.getBufferedImage(Constant.RES_CANNONBALL_PNG);
+            connonballImage = ImageResourceParser.getBufferedImage(Constant.RES_CANNONBALL_PNG);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -88,7 +88,7 @@ public class CannonBall extends Entity{
             return;
         }
 
-        // update the life of the missile
+        // update the life of the connonball
         life++;
         updateCounter++;
         x += speed.getXComponent();
@@ -96,7 +96,7 @@ public class CannonBall extends Entity{
 
         direction = speed.getYComponent() >= 0 ? Direction.UP : Direction.DOWN;
 
-        // update the speed of the missile every 1/4 seconds
+        // update the speed of the connonball every 1/4 seconds
         if (updateCounter >= 5) {
             // -1/2*g*(t^2)
             double life_second = (life/60.0);
@@ -111,7 +111,7 @@ public class CannonBall extends Entity{
 
     @Override
     public void draw(Graphics2D graphics2D) {
-        graphics2D.drawImage(missileImage, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
+        graphics2D.drawImage(connonballImage, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
     }
 
     public boolean isAlive() {

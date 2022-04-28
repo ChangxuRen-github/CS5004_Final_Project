@@ -59,25 +59,25 @@ public class CollisionChecker {
         return hasCollision;
     }
 
-    public boolean checkCollisionWithEntity(Entity missile, Entity target) {
+    public boolean checkCollisionWithEntity(Entity cannonball, Entity target) {
         boolean hasCollision = false;
-        // get missile's solid area position
-        missile.getSolidArea().x = missile.getSolidArea().x + missile.getX();
-        missile.getSolidArea().y = missile.getSolidArea().y + missile.getY();
+        // get cannonball's solid area position
+        cannonball.getSolidArea().x = cannonball.getSolidArea().x + cannonball.getX();
+        cannonball.getSolidArea().y = cannonball.getSolidArea().y + cannonball.getY();
 
         // get target's solid area position
         target.getSolidArea().x = target.getSolidArea().x + target.getX();
         target.getSolidArea().y = target.getSolidArea().y + target.getY();
 
-        missile.getSolidArea().x += missile.getSpeed().getXComponent();
-        missile.getSolidArea().y += missile.getSpeed().getYComponent();
+        cannonball.getSolidArea().x += cannonball.getSpeed().getXComponent();
+        cannonball.getSolidArea().y += cannonball.getSpeed().getYComponent();
 
 
-        if (missile.getSolidArea().intersects(target.getSolidArea())) {
+        if (cannonball.getSolidArea().intersects(target.getSolidArea())) {
             hasCollision = true;
         }
 
-        missile.restoreDefaultSolidArea();
+        cannonball.restoreDefaultSolidArea();
         target.restoreDefaultSolidArea();
         return hasCollision;
     }
