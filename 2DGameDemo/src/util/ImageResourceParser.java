@@ -7,6 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class ImageResourceParser {
+    //exception for the read image
     public static BufferedImage getBufferedImage(String path) throws IOException {
         return ImageIO.read(new FileInputStream(path));
     }

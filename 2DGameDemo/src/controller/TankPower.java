@@ -6,7 +6,7 @@ public class TankPower {
     public static final int MIN_ANGLE = 10;
     public static final int MAX_ANGLE= 80;
     public static final int ANGLE_STEP = 1;
-    public static final int INT_ANGLE = 10;
+    public static final int INT_ANGLE = 30;
 
     public JComponent getControllerLabel() {
         return new JLabel("Power");

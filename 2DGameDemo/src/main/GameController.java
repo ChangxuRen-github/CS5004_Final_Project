@@ -9,6 +9,7 @@ import util.ImageResourceParser;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,34 +21,39 @@ import java.awt.event.ActionListener;
  * angle can be changed through Spinner's button and also could be change directly in the Spinner's input box
  */
 public class GameController extends JToolBar {
-    public GameController(Tank tank) {
-        TankPower powerController = new TankPower();
-        this.add(powerController.getControllerLabel());
-        JSpinner controller = powerController.getController();
+    public GameController(GamePanel gamePanel) {
+
+        // Add tank power controller
+        TankPower tankPower = new TankPower();
+        this.add(tankPower.getControllerLabel());
+        JSpinner powerController = tankPower.getController();
+        powerController.setMaximumSize(new Dimension(64, 16));
         // Create the anonymous class which monitor the change of the power controller Spinner
-        controller.addChangeListener(new ChangeListener() {
+        //add change Listener is an interface of the java.
+        powerController.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                Object value = controller.getValue();
+                Object value = powerController.getValue();
                 if (value instanceof Integer) {
-                    tank.setGunPower((Integer) value);
+                    gamePanel.getTank().setGunPower((Integer) value);
                 } else {
                     System.out.println("Value is not int");
                 }
             }
         });
+        this.add(powerController);
 
-        this.add(controller);
-
+        // Add tank angle controller
         TankAngle tankAngle = new TankAngle();
         this.add(tankAngle.getControllerLabel());
         JSpinner angleController = tankAngle.getController();
+        angleController.setMaximumSize(new Dimension(64, 16));
         angleController.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
                 Object value = angleController.getValue();
                 if (value instanceof Integer) {
-                    tank.setGunAngle((Integer) value);
+                    gamePanel.getTank().setGunAngle((Integer) value);
                 } else {
                     System.out.println("Value is not int");
                 }
@@ -55,10 +61,10 @@ public class GameController extends JToolBar {
         });
         this.add(angleController);
 
-        this.add(new JLabel("Fire"));
+        this.add(new JLabel("  Fire  "));
         try {
-            ImageIcon fire = new ImageIcon(ImageResourceParser.getBufferedImage(Constant.RES_TARGET_PNG));
-            JButton button = new JButton(fire);
+            ImageIcon Fire = new ImageIcon(ImageResourceParser.getBufferedImage(Constant.RES_CONTROLLER_FIRE_PNG));
+            JButton button = new JButton(Fire);
             /*
             button.addActionListener(new ActionListener() {
                 @Override
@@ -68,8 +74,20 @@ public class GameController extends JToolBar {
             }); */
 
             // use a lambda function to respond to the button action
-            button.addActionListener((e) -> tank.fire());
+            button.addActionListener((e) -> gamePanel.getTank().fire());
             this.add(button);
+
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+        this.add(new JLabel( "  Reset  "));
+        try{
+            ImageIcon reset = new ImageIcon(ImageResourceParser.getBufferedImage(Constant.RES_CONTROLLER_RESET_PNG));
+            JButton resetButton= new JButton(reset);
+            this.add(resetButton);
+            resetButton.addActionListener((e) -> gamePanel.reset());
+            this.add(resetButton);
         } catch (Exception e) {
             e.printStackTrace();
         }

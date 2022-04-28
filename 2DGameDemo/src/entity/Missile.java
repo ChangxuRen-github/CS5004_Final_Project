@@ -1,15 +1,14 @@
 package entity;
 
 import main.GamePanel;
+import util.Constant;
 import util.Direction;
+import util.ImageResourceParser;
 import util.Vector2D;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Objects;
 
 public class Missile extends Entity{
     private static final int MAX_LIFE = 500;
@@ -41,11 +40,8 @@ public class Missile extends Entity{
     }
 
     public void getImage() {
-
         try {
-            missileImage = ImageIO.read(Objects.requireNonNull(new FileInputStream("./2DGameDemo/res/missile/missile.png")));
-            //missileImage = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("/missile/missile.png")));
-
+            missileImage = ImageResourceParser.getBufferedImage(Constant.RES_MISSILE_PNG);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,6 +60,14 @@ public class Missile extends Entity{
 
     @Override
     public void update() {
+        // update the life of the missile
+        life++;
+        updateCounter++;
+        x += speed.getXComponent();
+        y += speed.getYComponent();
+
+        direction = speed.getYComponent() >= 0 ? Direction.UP : Direction.DOWN;
+
         if (isOutOfBound() || life >= MAX_LIFE) {
             // TODO
             // play some sound or something to alert the player
@@ -72,9 +76,13 @@ public class Missile extends Entity{
         }
 
         if (gamePanel.collisionChecker.checkCollisionWithTiles(this)) {
-            reset();
+            //reset();
             //TODO
-            //do something else
+            Explosion explosion = new Explosion(gamePanel, getX(), getY());
+            gamePanel.explosionList.add(explosion);
+            System.out.println("Hit the Tiles");
+            reset();
+
             return;
         }
 
@@ -84,13 +92,7 @@ public class Missile extends Entity{
             return;
         }
 
-        // update the life of the missile
-        life++;
-        updateCounter++;
-        x += speed.getXComponent();
-        y += speed.getYComponent();
 
-        direction = speed.getYComponent() >= 0 ? Direction.UP : Direction.DOWN;
 
         // update the speed of the missile
         if (updateCounter >= 15) {

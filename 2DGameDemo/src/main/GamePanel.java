@@ -1,11 +1,14 @@
 package main;
 
+import entity.Explosion;
 import entity.Tank;
 import entity.Target;
 import tile.TileManager;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GamePanel extends JPanel implements Runnable{
 
@@ -36,6 +39,8 @@ public class GamePanel extends JPanel implements Runnable{
     public TileManager tileManager = new TileManager(this);
     // GamePanel has a collision checker to check collision
     public CollisionChecker collisionChecker = new CollisionChecker(this);
+
+    public List<Explosion> explosionList = new ArrayList<Explosion>();
 
 
     // Game state
@@ -73,7 +78,6 @@ public class GamePanel extends JPanel implements Runnable{
     }
     @Override
     public void run() {
-
         double drawInterval = 1_000_000_000.0 / fps;
         double delta = 0;
         long lastTime = System.nanoTime();
@@ -87,7 +91,6 @@ public class GamePanel extends JPanel implements Runnable{
             delta += (currentTime - lastTime) / drawInterval;
             timer += (currentTime - lastTime);
             lastTime = currentTime;
-
 
             if (delta >= 1) {
                 // UPDATE: update information such as sprite positions
@@ -131,11 +134,17 @@ public class GamePanel extends JPanel implements Runnable{
         // draw target
         target.draw(g2);
 
+        for (Explosion explosion: explosionList) {
+            explosion.draw(g2);
+        }
+
         g2.dispose();
     }
 
     public void reset() {
         tank.reset();
         target.reset();
+
+        explosionList = new ArrayList<Explosion>();
     }
 }

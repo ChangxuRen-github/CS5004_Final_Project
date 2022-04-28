@@ -38,7 +38,6 @@ public class KeyHandler implements KeyListener {
     }
 
     private void playState(int keyCode) {
-
         switch(keyCode) {
             case KeyEvent.VK_A -> gamePanel.tank.incrementGunAngle();
             case KeyEvent.VK_D -> gamePanel.tank.decrementGunAngle();

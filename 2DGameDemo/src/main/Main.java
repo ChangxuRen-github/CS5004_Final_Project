@@ -1,7 +1,5 @@
 package main;
 
-import controller.TankPower;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -15,7 +13,7 @@ public class Main {
         window.setTitle("2D Adventure");
 
         GamePanel gamePanel = new GamePanel();
-        GameController controller = new GameController(gamePanel.getTank());
+        GameController controller = new GameController(gamePanel);
 
         window.add(controller, BorderLayout.NORTH);
         window.add(gamePanel, BorderLayout.SOUTH);

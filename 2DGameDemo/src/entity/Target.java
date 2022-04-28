@@ -11,6 +11,10 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Random;
 
+/**
+ *
+ */
+
 public class Target extends Entity{
     private static final int TARGET_POSITION_TOP_BOUND = 8;
     private static final int TARGET_POSITION_LEFT_BOUND = 13;

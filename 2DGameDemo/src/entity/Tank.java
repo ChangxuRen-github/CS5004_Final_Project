@@ -2,7 +2,9 @@ package entity;
 
 import main.GamePanel;
 import main.KeyHandler;
+import util.Constant;
 import util.Direction;
+import util.ImageResourceParser;
 import util.Vector2D;
 
 import javax.imageio.ImageIO;
@@ -63,15 +65,8 @@ public class Tank extends Entity{
     private void getImage() {
 
         try {
-            InputStream tank1Stream = new FileInputStream("./2DGameDemo/res/tank/tankOne.png");
-            InputStream tank2Stream = new FileInputStream("./2DGameDemo/res/tank/tankTwo.png");
-            tankOne = ImageIO.read(tank1Stream);
-            tankTwo = ImageIO.read(tank2Stream);
-
-            /*tankOne = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("2DGameDemo/res/tank/tankOne.png")));
-            tankTwo = ImageIO.read(Objects.requireNonNull(getClass().getResourceAsStream("2DGameDemo/res/tank/tankTwo.png")));*/
-
-
+            tankOne = ImageResourceParser.getBufferedImage(Constant.RES_TANK_ONE_PNG);
+            tankTwo = ImageResourceParser.getBufferedImage(Constant.RES_TANK_TWO_PNG);
         } catch (IOException e) {
             e.printStackTrace();
         }
