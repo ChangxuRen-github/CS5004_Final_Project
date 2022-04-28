@@ -102,7 +102,8 @@ public class CannonBall extends Entity{
             double life_second = (life/60.0);
             int ySpeed = (int) (0.5 * 9.8 * (life_second*life_second));
             speed.setYComponent(speed.getYComponent() + ySpeed);
-            System.out.println(speed);
+            //DEBUG
+            //System.out.println(speed);
             updateCounter = 0;
         }
 
