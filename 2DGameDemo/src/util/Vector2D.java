@@ -5,8 +5,9 @@ public class Vector2D {
     private int xComponent;
 
     public Vector2D(int magnitude, double angle) {
-        System.out.println("Magnitude is " + magnitude);
-        System.out.println("Angle is " + angle);
+        //DEBUG
+        //System.out.println("Magnitude is " + magnitude);
+        //System.out.println("Angle is " + angle);
         // The pixel's index is upside down
         // The 0 started from top left
         setYComponent((int) (Math.sin(angle) * magnitude) * (-1));
