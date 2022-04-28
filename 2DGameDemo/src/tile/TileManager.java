@@ -45,7 +45,7 @@ public class TileManager {
             tiles[BRICK] = new Tile();
             tiles[BRICK].image = ImageResourceParser.getBufferedImage(Constant.RES_BRICK_PNG);
             // set Brick  to be solid
-            tiles[BRICK].isSolid = true;
+            //tiles[BRICK].isSolid = true;
 
             tiles[GRASS] = new Tile();
             tiles[GRASS].image = ImageResourceParser.getBufferedImage(Constant.RES_GRASS_PNG);
