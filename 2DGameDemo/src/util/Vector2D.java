@@ -32,7 +32,7 @@ public class Vector2D {
 
     public void setXComponent(int xComponent) {
         this.xComponent = xComponent;
-        this.xComponent = Math.min(this.xComponent, 4);
+        this.xComponent = Math.max(this.xComponent, 4);
     }
 
     // DEBUG

@@ -1,5 +1,7 @@
 package entity;
 
+import controller.TankAngle;
+import controller.TankPower;
 import main.GamePanel;
 import main.KeyHandler;
 import util.Constant;
@@ -15,12 +17,8 @@ public class Tank extends Entity{
     private KeyHandler keyHandler;
     private final CannonBall cannonBall = new CannonBall(gamePanel);
 
-    private static final int MAX_GUN_ANGLE = 80;
-    private static final int MIN_GUN_ANGLE = 10;
-    private static final int MAX_GUN_POWER = 80;
-    private static final int MIN_GUN_POWER = 10;
-    private int gunAngle = MIN_GUN_ANGLE;
-    private int gunPower = MIN_GUN_POWER;
+    private int gunAngle = TankAngle.INI_ANGLE;
+    private int gunPower = TankPower.INI_POWER;
 
     private BufferedImage tankOne, tankTwo;
 
@@ -111,31 +109,11 @@ public class Tank extends Entity{
         graphics2D.drawImage(image, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
     }
 
-    public void incrementGunAngle() {
-        this.gunAngle += 5;
-        this.gunAngle = Math.min(MAX_GUN_ANGLE, this.gunAngle);
-    }
-
-    public void decrementGunAngle() {
-        this.gunAngle -= 5;
-        this.gunAngle = Math.max(MIN_GUN_ANGLE, this.gunAngle);
-    }
-
-    public void incrementGunPower() {
-        this.gunPower += 10;
-        this.gunPower = Math.min(MAX_GUN_POWER, this.gunPower);
-    }
-
-    public void decrementGunPower() {
-        this.gunPower -= 10;
-        this.gunPower = Math.max(MIN_GUN_POWER, this.gunPower);
-    }
-
     public void fire() {
         if (cannonBall.isAlive()) return;
 
         //TODO: This Algo is not working properly
-        cannonBall.setSpeed(new Vector2D((int) (gunPower * 0.3), Math.toRadians(gunAngle)));
+        cannonBall.setSpeed(new Vector2D((int)(gunPower * 0.25), Math.toRadians(gunAngle)));
         cannonBall.setX(this.x);
         cannonBall.setY(this.y);
         cannonBall.setAlive(true);

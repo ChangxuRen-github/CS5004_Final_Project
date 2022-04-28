@@ -18,6 +18,8 @@ public class CannonBall extends Entity{
     private int life = 0;
     private int updateCounter = 0;
 
+
+
     private BufferedImage missileImage;
 
     public CannonBall(GamePanel gamePanel) {
@@ -61,13 +63,6 @@ public class CannonBall extends Entity{
     @Override
     // update frequency is about 60Hz
     public void update() {
-        // update the life of the missile
-        life++;
-        updateCounter++;
-        x += speed.getXComponent();
-        y += speed.getYComponent();
-
-        direction = speed.getYComponent() >= 0 ? Direction.UP : Direction.DOWN;
 
         if (isOutOfBound() || life >= MAX_LIFE) {
             // TODO
@@ -93,11 +88,20 @@ public class CannonBall extends Entity{
             return;
         }
 
+        // update the life of the missile
+        life++;
+        updateCounter++;
+        x += speed.getXComponent();
+        y += speed.getYComponent();
 
+        direction = speed.getYComponent() >= 0 ? Direction.UP : Direction.DOWN;
 
-        // update the speed of the missile
-        if (updateCounter >= 15) {
-            speed.setYComponent(speed.getYComponent() + GRAVITY.getYComponent());
+        // update the speed of the missile every 1/4 seconds
+        if (updateCounter >= 5) {
+            // -1/2*g*(t^2)
+            double life_second = (life/60.0);
+            int ySpeed = (int) (0.5 * 9.8 * (life_second*life_second));
+            speed.setYComponent(speed.getYComponent() + ySpeed);
             System.out.println(speed);
             updateCounter = 0;
         }
