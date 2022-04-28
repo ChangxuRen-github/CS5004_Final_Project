@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
-public class Missile extends Entity{
+public class CannonBall extends Entity{
     private static final int MAX_LIFE = 500;
     private static final Vector2D GRAVITY = new Vector2D(1, 0);
 
@@ -20,7 +20,7 @@ public class Missile extends Entity{
 
     private BufferedImage missileImage;
 
-    public Missile(GamePanel gamePanel) {
+    public CannonBall(GamePanel gamePanel) {
         super(gamePanel);
     }
 
@@ -59,6 +59,7 @@ public class Missile extends Entity{
     }
 
     @Override
+    // update frequency is about 60Hz
     public void update() {
         // update the life of the missile
         life++;
@@ -97,7 +98,7 @@ public class Missile extends Entity{
         // update the speed of the missile
         if (updateCounter >= 15) {
             speed.setYComponent(speed.getYComponent() + GRAVITY.getYComponent());
-            //System.out.println(speed);
+            System.out.println(speed);
             updateCounter = 0;
         }
 

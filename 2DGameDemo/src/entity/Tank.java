@@ -7,16 +7,13 @@ import util.Direction;
 import util.ImageResourceParser;
 import util.Vector2D;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 
 public class Tank extends Entity{
     private KeyHandler keyHandler;
-    private final Missile missile = new Missile(gamePanel);
+    private final CannonBall cannonBall = new CannonBall(gamePanel);
 
     private static final int MAX_GUN_ANGLE = 80;
     private static final int MIN_GUN_ANGLE = 10;
@@ -91,9 +88,9 @@ public class Tank extends Entity{
             }
         }
 
-        // when the missile is alive update the missile
-        if (missile.isAlive()) {
-            missile.update();
+        // when the cannonBall is alive update the cannonBall
+        if (cannonBall.isAlive()) {
+            cannonBall.update();
         }
     }
 
@@ -107,8 +104,8 @@ public class Tank extends Entity{
             image = tankTwo;
         }
 
-        if (missile.isAlive()) {
-            missile.draw(graphics2D);
+        if (cannonBall.isAlive()) {
+            cannonBall.draw(graphics2D);
         }
         // draw the tank on the panel
         graphics2D.drawImage(image, x, y, gamePanel.tileSize, gamePanel.tileSize, null);
@@ -135,13 +132,13 @@ public class Tank extends Entity{
     }
 
     public void fire() {
-        if (missile.isAlive()) return;
+        if (cannonBall.isAlive()) return;
 
         //TODO: This Algo is not working properly
-        missile.setSpeed(new Vector2D((int) (gunPower * 0.3), Math.toRadians(gunAngle)));
-        missile.setX(this.x);
-        missile.setY(this.y);
-        missile.setAlive(true);
+        cannonBall.setSpeed(new Vector2D((int) (gunPower * 0.3), Math.toRadians(gunAngle)));
+        cannonBall.setX(this.x);
+        cannonBall.setY(this.y);
+        cannonBall.setAlive(true);
     }
 
     public int getGunAngle() {

@@ -12,9 +12,8 @@ import java.util.List;
 
 public class GamePanel extends JPanel implements Runnable{
 
-    // Screen settings the size of sprite is 16 * 16 pixels
     public final int originalTileSize = 10;
-    // Scaling up the sprite to 48 * 48
+    // Scaling up the sprite to 3 times
     public final int scale = 3;
     // Scaling up the size of sprite
     public final int tileSize = originalTileSize * scale;

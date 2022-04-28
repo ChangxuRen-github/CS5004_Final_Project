@@ -6,7 +6,7 @@ public class Constant {
 
     public static final String RES_TANK_ONE_PNG = RES_PRE + "/tank/tankOne.png";
     public static final String RES_TANK_TWO_PNG = RES_PRE + "/tank/tankTwo.png";
-    public static final String RES_MISSILE_PNG = RES_PRE + "/missile/missile.png";
+    public static final String RES_MISSILE_PNG = RES_PRE + "/artilleryShell/cannonball.png";
 
     public static final String RES_SKY_PNG = RES_PRE + "/sky/sky.png";
     public static final String RES_BRICK_PNG = RES_PRE + "/land/brick.png";
