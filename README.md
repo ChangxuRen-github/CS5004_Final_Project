@@ -9,25 +9,25 @@ Jie Zhang
 Changxu Ren
 
 
-Build Requirements:
+## Build Requirements:
 * JDK version >= 17.0
 * maven version >= 3.8
 
-How to do further development:
+## How to do further development:
 
-Using IntelliJ:
+### Using IntelliJ:
 
 Open 2DGameDemo as the project folder. And check the module settings and make sure src dir and JDK version are set
 properly. 
 
-How to run locally:
+## How to run locally:
 ```
 git clone https://github.com/ChangxuRen-github/CS5004_Final_Project.git 
 cd CS5004_Final_Project/2DGameDemo
 mvn compile exec:java
 ```
 
-How to build a runnable jar:
+## How to build a runnable jar:
 ```
 mvn clean install assembly:single
 ```
