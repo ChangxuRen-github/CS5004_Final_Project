@@ -28,7 +28,7 @@ public class Explosion extends Entity {
 
     public BufferedImage getImage() {
         try {
-            explosion = ImageResourceParser.getBufferedImage(Constant.RES_TARGET_EXPLODED_PNG);
+            explosion = ImageResourceParser.getBufferedImage(this, Constant.RES_TARGET_EXPLODED_PNG);
         } catch (Exception e) {
             e.printStackTrace();
         }

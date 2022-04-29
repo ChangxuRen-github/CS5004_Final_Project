@@ -61,8 +61,8 @@ public class Target extends Entity {
     private void getImage() {
 
         try {
-            target = ImageResourceParser.getBufferedImage(Constant.RES_TARGET_PNG);
-            targetExploded = ImageResourceParser.getBufferedImage(Constant.RES_TARGET_EXPLODED_PNG);
+            target = ImageResourceParser.getBufferedImage(this, Constant.RES_TARGET_PNG);
+            targetExploded = ImageResourceParser.getBufferedImage(this, Constant.RES_TARGET_EXPLODED_PNG);
         } catch (IOException e) {
             e.printStackTrace();
         }

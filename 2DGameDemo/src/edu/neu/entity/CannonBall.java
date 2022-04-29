@@ -43,7 +43,7 @@ public class CannonBall extends Entity {
 
     public void getImage() {
         try {
-            connonballImage = ImageResourceParser.getBufferedImage(Constant.RES_CANNONBALL_PNG);
+            connonballImage = ImageResourceParser.getBufferedImage(this, Constant.RES_CANNONBALL_PNG);
         } catch (IOException e) {
             e.printStackTrace();
         }

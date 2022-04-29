@@ -60,8 +60,8 @@ public class Tank extends Entity {
     private void getImage() {
 
         try {
-            tankOne = ImageResourceParser.getBufferedImage(Constant.RES_TANK_ONE_PNG);
-            tankTwo = ImageResourceParser.getBufferedImage(Constant.RES_TANK_TWO_PNG);
+            tankOne = ImageResourceParser.getBufferedImage(this, Constant.RES_TANK_ONE_PNG);
+            tankTwo = ImageResourceParser.getBufferedImage(this, Constant.RES_TANK_TWO_PNG);
         } catch (IOException e) {
             e.printStackTrace();
         }

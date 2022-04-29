@@ -2,7 +2,7 @@ package edu.neu.util;
 //constant value for the program, it can be easy to update the constant value and maintanais the program.
 
 public class Constant {
-    public static final String RES_PRE = "./2DGameDemo/res";
+    public static final String RES_PRE = "";
 
     public static final String RES_TANK_ONE_PNG = RES_PRE + "/tank/tankOne.png";
     public static final String RES_TANK_TWO_PNG = RES_PRE + "/tank/tankTwo.png";

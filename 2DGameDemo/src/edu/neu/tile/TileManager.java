@@ -38,23 +38,23 @@ public class TileManager {
     public void getTileImages() {
         try {
             tiles[SKY] = new Tile();
-            tiles[SKY].image = ImageResourceParser.getBufferedImage(Constant.RES_SKY_PNG);
+            tiles[SKY].image = ImageResourceParser.getBufferedImage(this, Constant.RES_SKY_PNG);
 
             tiles[BRICK] = new Tile();
-            tiles[BRICK].image = ImageResourceParser.getBufferedImage(Constant.RES_BRICK_PNG);
+            tiles[BRICK].image = ImageResourceParser.getBufferedImage(this, Constant.RES_BRICK_PNG);
             // set Brick  to be solid
             //tiles[BRICK].isSolid = true;
 
             tiles[GRASS] = new Tile();
-            tiles[GRASS].image = ImageResourceParser.getBufferedImage(Constant.RES_GRASS_PNG);
+            tiles[GRASS].image = ImageResourceParser.getBufferedImage(this, Constant.RES_GRASS_PNG);
             // set grass tile to be solid
             tiles[GRASS].isSolid = true;
 
             tiles[CLOUD] = new Tile();
-            tiles[CLOUD].image = ImageResourceParser.getBufferedImage(Constant.RES_CLOUD_PNG);
+            tiles[CLOUD].image = ImageResourceParser.getBufferedImage(this, Constant.RES_CLOUD_PNG);
 
             tiles[SKY_WITH_STARS] = new Tile();
-            tiles[SKY_WITH_STARS].image = ImageResourceParser.getBufferedImage(Constant.RES_SKY_WITH_STAR_PNG);
+            tiles[SKY_WITH_STARS].image = ImageResourceParser.getBufferedImage(this, Constant.RES_SKY_WITH_STAR_PNG);
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -66,7 +66,7 @@ public class TileManager {
      */
     private void loadMap(String filePath) {
         try {
-            InputStream inputStream = new FileInputStream(filePath);
+            InputStream inputStream = this.getClass().getResourceAsStream(filePath);
             assert inputStream != null;
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 

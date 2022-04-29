@@ -60,7 +60,7 @@ public class GameController extends JToolBar {
 
         this.add(new JLabel("  Fire  "));
         try {
-            ImageIcon Fire = new ImageIcon(ImageResourceParser.getBufferedImage(Constant.RES_CONTROLLER_FIRE_PNG));
+            ImageIcon Fire = new ImageIcon(ImageResourceParser.getBufferedImage(this, Constant.RES_CONTROLLER_FIRE_PNG));
             JButton button = new JButton(Fire);
             /*
             button.addActionListener(new ActionListener() {
@@ -80,7 +80,7 @@ public class GameController extends JToolBar {
         }
         this.add(new JLabel( "  Reset  "));
         try{
-            ImageIcon reset = new ImageIcon(ImageResourceParser.getBufferedImage(Constant.RES_CONTROLLER_RESET_PNG));
+            ImageIcon reset = new ImageIcon(ImageResourceParser.getBufferedImage(this, Constant.RES_CONTROLLER_RESET_PNG));
             JButton resetButton= new JButton(reset);
             this.add(resetButton);
             resetButton.addActionListener((e) -> gamePanel.reset());
