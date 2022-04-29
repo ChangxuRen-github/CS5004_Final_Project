@@ -1,8 +1,5 @@
 package edu.neu.main;
 
-import edu.neu.main.GameController;
-import edu.neu.main.GamePanel;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -12,7 +9,7 @@ public class Main {
         window.setLayout(new BorderLayout(1, 1));
 
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //window.setResizable(false);
+        window.setResizable(false);
         window.setTitle("2D Adventure");
 
         GamePanel gamePanel = new GamePanel();

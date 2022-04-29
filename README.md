@@ -13,6 +13,13 @@ Build Requirements:
 * JDK version >= 17.0
 * maven version >= 3.8
 
+How to do further development:
+
+Using IntelliJ:
+
+Open 2DGameDemo as the project folder. And check the module settings and make sure src dir and JDK version are set
+properly. 
+
 How to run locally:
 ```
 git clone https://github.com/ChangxuRen-github/CS5004_Final_Project.git 

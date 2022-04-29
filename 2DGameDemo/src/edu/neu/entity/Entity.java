@@ -29,8 +29,9 @@ public abstract class Entity {
 
     public abstract void draw(Graphics2D graphics2D);
 
+    // only count the bottom and right side, the upside's could drop back again
     protected boolean isOutOfBound() {
-        return x < 0 || x > gamePanel.screenWidth || y < 0 || y > gamePanel.screenHeight;
+        return x < 0 || x > gamePanel.screenWidth || y > gamePanel.screenHeight;
     }
 
     public int getX() {

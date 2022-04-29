@@ -64,7 +64,7 @@ public class CannonBall extends Entity {
     // update frequency is about 60Hz
     public void update() {
 
-        if (isOutOfBound() || life >= MAX_LIFE) {
+        if ( isOutOfBound() || life >= MAX_LIFE) {
             // TODO
             // play some sound or something to alert the player
             reset();
@@ -96,11 +96,13 @@ public class CannonBall extends Entity {
 
         direction = speed.getYComponent() >= 0 ? Direction.UP : Direction.DOWN;
 
-        // update the speed of the connonball every 1/4 seconds
+        // update the speed of the connonball every 1/12 seconds
         if (updateCounter >= 5) {
-            // -1/2*g*(t^2)
             double life_second = (life/60.0);
-            int ySpeed = (int) (0.5 * 9.8 * (life_second*life_second));
+            //int ySpeed = (int) (0.5 * 9.8 * (life_second*life_second));
+            // distance diff = -1/2*g*(t^2)
+            // speed diff = g*t
+            int ySpeed = (int) (9.8 * life_second);
             speed.setYComponent(speed.getYComponent() + ySpeed);
             //DEBUG
             //System.out.println(speed);

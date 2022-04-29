@@ -113,7 +113,7 @@ public class Tank extends Entity {
         if (cannonBall.isAlive()) return;
 
         //TODO: This Algo is not working properly
-        cannonBall.setSpeed(new Vector2D((int)(gunPower * 0.25), Math.toRadians(gunAngle)));
+        cannonBall.setSpeed(new Vector2D((int)(gunPower * 0.35), Math.toRadians(gunAngle)));
         cannonBall.setX(this.x);
         cannonBall.setY(this.y);
         cannonBall.setAlive(true);

@@ -1,7 +1,5 @@
 package edu.neu.main;
 
-import edu.neu.main.GamePanel;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
